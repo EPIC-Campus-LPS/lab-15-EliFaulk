@@ -21,21 +21,41 @@ public class MatrixPuzzle {
 		checkDuplicates(board);
 		
 		
-		int[][] board2 = shiftRight(board, 2, 1);
+		board = shiftRight(board, 2, 1);
 		for (int x = 0; x < 5; x++) {
 			for (int y = 0; y < 5; y++) {
-				System.out.print(board2[x][y] + " ");
+				System.out.print(board[x][y] + " ");
 			}
 			System.out.print("\n");
 		}
+		System.out.print("\n");
 		
-		int[][] board3 = shiftUp(board, 3, 2);
+		board = shiftUp(board, 3, 2);
 		for (int x = 0; x < 5; x++) {
 			for (int y = 0; y < 5; y++) {
-				System.out.print(board3[x][y] + " ");
+				System.out.print(board[x][y] + " ");
 			}
 			System.out.print("\n");
 		}
+		System.out.print("\n");
+		
+		board = reverseRow(board, 0);
+		for (int x = 0; x < 5; x++) {
+			for (int y = 0; y < 5; y++) {
+				System.out.print(board[x][y] + " ");
+			}
+			System.out.print("\n");
+		}
+		System.out.print("\n");
+		
+		board = reverseColumn(board, 0);
+		for (int x = 0; x < 5; x++) {
+			for (int y = 0; y < 5; y++) {
+				System.out.print(board[x][y] + " ");
+			}
+			System.out.print("\n");
+		}
+		System.out.print("\n");
 
 	}
 	
@@ -90,6 +110,30 @@ public class MatrixPuzzle {
 		int[][] output = new int[5][5];
 		for (int i = 0; i < 5; i++) {
 			output[(i+shift) % 5][col] = arr[i][col];
+		}
+		for (int j = 0; j < 5; j++) {
+			arr[j][col] = output[j][col];
+		}
+		return arr;
+	}
+	
+	
+	public static int[][] reverseRow(int[][] arr, int row) {
+		int[][] output = new int[5][5];
+		for (int i = 0; i < 5; i++) {
+			output[row][i] = arr[row][4 - i];
+		}
+		for (int j = 0; j < 5; j++) {
+			arr[row][j] = output[row][j];
+		}
+		return arr;
+	}
+	
+	
+	public static int[][] reverseColumn(int[][] arr, int col) {
+		int[][] output = new int[5][5];
+		for (int i = 0; i < 5; i++) {
+			output[i][col] = arr[4-i][col];
 		}
 		for (int j = 0; j < 5; j++) {
 			arr[j][col] = output[j][col];
